@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
-  <title>{% block title %}My Site{% endblock %}</title>
+  <title>{% block title %}URECA{% endblock %}</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color:#decdc3">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">My Site</a>
+      <a class="navbar-brand" href="{% url 'home' %}">URECA</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,13 +20,10 @@
             <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'upload' %}">Simple Upload</a>
+            <a class="nav-link" href="{% url 'image_upload' %}">Image Upload</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'book_list' %}">Model Forms Upload</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'class_book_list' %}">Model Forms Upload (CBV)</a>
+            <a class="nav-link" href="{% url 'video_input' %}">Video Stream</a>
           </li>
         </ul>
       </div>

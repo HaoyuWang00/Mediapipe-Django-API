@@ -1,9 +1,10 @@
 from django import forms
 
-from .models import Book
+from .models import Image
 
 
-class BookForm(forms.ModelForm):
+class ImageForm(forms.ModelForm):
+    """Form for the image model"""
     class Meta:
-        model = Book
-        fields = ('title', 'author', 'pdf', 'cover')
+        model = Image
+        fields = ('title', 'image')
