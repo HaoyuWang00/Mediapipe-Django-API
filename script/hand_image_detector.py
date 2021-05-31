@@ -21,19 +21,20 @@ def hand_detection(image_path):
   results = hands.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
   # Print handedness and draw hand landmarks on the image.
-  print('Handedness:', results.multi_handedness)
+  # print('Handedness:', results.multi_handedness)
   if not results.multi_hand_landmarks:
-    print("WARNING: This image has no hand(s)!!!")
+    pass
+    # print("WARNING: This image has no hand(s)!!!")
   else:
     image_hight, image_width, _ = image.shape
     annotated_image = image.copy()
     for hand_landmarks in results.multi_hand_landmarks:
-      print('hand_landmarks:', hand_landmarks)
-      print(
-          f'Index finger tip coordinates: (',
-          f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width}, '
-          f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight})'
-      )
+      # print('hand_landmarks:', hand_landmarks)
+      # print(
+      #     f'Index finger tip coordinates: (',
+      #     f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width}, '
+      #     f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight})'
+      # )
       mp_drawing.draw_landmarks(
           annotated_image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
     

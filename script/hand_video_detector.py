@@ -50,19 +50,19 @@ def hand_video(flag, frame):
     image = cv2.flip(frame, 1)
     # frame_ID = cap.get(1)
     results = hands.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    print('Handedness:', results.multi_handedness)
+    # print('Handedness:', results.multi_handedness)
     if not results.multi_hand_landmarks:
         hands.close()
         return frame
     image_hight, image_width, _ = image.shape
     annotated_image = image.copy()
     for hand_landmarks in results.multi_hand_landmarks:
-        print('hand_landmarks:', hand_landmarks)
-        print(
-            f'Index finger tip coordinates: (',
-            f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width}, '
-            f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight})'
-        )
+        # print('hand_landmarks:', hand_landmarks)
+        # print(
+        #     f'Index finger tip coordinates: (',
+        #     f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width}, '
+        #     f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight})'
+        # )
         mp_drawing.draw_landmarks(
             annotated_image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
     return cv2.flip(annotated_image, 1)

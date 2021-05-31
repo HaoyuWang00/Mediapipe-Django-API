@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse, HttpResponseServerError
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView
 from django.core.files.storage import FileSystemStorage
@@ -10,8 +11,9 @@ import numpy as np
 from script.hand_image_detector import hand_detection
 import cv2
 
-from mysite.camera import VideoCamera, gen
+from mysite.camera import VideoCamera #, gen
 from django.http import StreamingHttpResponse
+import time
 
 
 class Home(TemplateView):
@@ -58,14 +60,44 @@ def _grab_image(path=None, stream=None, url=None):
 
 # for video input and detection
 def video_stream(request):
-    vid = StreamingHttpResponse(gen(VideoCamera(), False), 
-    content_type='multipart/x-mixed-replace; boundary=frame')
-    return vid
+    try:
+        vid = StreamingHttpResponse(gen(VideoCamera(), False), 
+        content_type='multipart/x-mixed-replace; boundary=frame')
+        return vid
+    except Exception as e:
+        # pass
+        return 'error in views.video_stream'
 
 def video_save(request):
-    vid = StreamingHttpResponse(gen(VideoCamera(), True), 
-    content_type='multipart/x-mixed-replace; boundary=frame')
-    return vid
+    try:
+        vid = StreamingHttpResponse(gen(VideoCamera(), True), 
+        content_type='multipart/x-mixed-replace; boundary=frame')
+        return vid
+    except HttpResponseServerError.streaming as e:
+        pass
+        # return HttpResponseServerError(e.message)
 
 def video_input(request):
     return render(request, 'video_input.html')
+
+# generator that saves the video captured if flag is set
+def gen(camera, flag):
+	if flag == True:
+		time_now = time.localtime()
+		current_time = time.strftime("%H:%M:%S", time_now)
+		fourcc = cv2.VideoWriter_fourcc(*'XVID')
+		out = cv2.VideoWriter('output_' + str(current_time) + '.avi',fourcc, 20.0, (640,480))
+
+		while True:
+                    frame = camera.get_frame()
+                    nparr = np.fromstring(frame, np.uint8)
+                    cv_frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+                    yield (b'--frame\r\n'
+                        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+                    out.write(cv_frame)
+			
+	else:
+		while True:
+                    frame = camera.get_frame()
+                    yield (b'--frame\r\n'
+                        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')

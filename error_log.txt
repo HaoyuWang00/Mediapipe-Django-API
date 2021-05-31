@@ -1,0 +1,61 @@
+1. running video stream for about 1 minutes:
+
+ERROR: Could not open '/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/mediapipe/modules/hand_landmark/hand_landmark.tflite'.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+E20210531 15:09:08.602391  5333 calculator_graph.cc:770] INTERNAL: CalculatorGraph::Run() failed in Run: 
+Calculator::Open() for node "handlandmarkcpu__inferencecalculator__handlandmarkcpu__InferenceCalculator" failed: ; Failed to load model from path /home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/mediapipe/modules/hand_landmark/hand_landmark.tflite
+Traceback (most recent call last):
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/wsgiref/handlers.py", line 138, in run
+    self.finish_response()
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/wsgiref/handlers.py", line 183, in finish_response
+    for data in self.result:
+  File "/home/haoyu/URECA/hand_detection/mysite/camera.py", line 41, in gen
+  File "/home/haoyu/URECA/hand_detection/mysite/camera.py", line 17, in get_frame
+  File "/home/haoyu/URECA/hand_detection/script/hand_video_detector.py", line 52, in hand_video
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/mediapipe/python/solutions/hands.py", line 164, in process
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/mediapipe/python/solution_base.py", line 307, in process
+RuntimeError: CalculatorGraph::Run() failed in Run: 
+Calculator::Open() for node "handlandmarkcpu__inferencecalculator__handlandmarkcpu__InferenceCalculator" failed: ; Failed to load model from path /home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/mediapipe/modules/hand_landmark/hand_landmark.tflite
+
+
+2. with try and catch:
+
+ERROR: Could not open '/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/mediapipe/modules/hand_landmark/hand_landmark.tflite'.
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+E20210531 15:37:33.078917 152317 calculator_graph.cc:770] INTERNAL: CalculatorGraph::Run() failed in Run: 
+Calculator::Open() for node "handlandmarkcpu__inferencecalculator__handlandmarkcpu__InferenceCalculator" failed: ; Failed to load model from path /home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/mediapipe/modules/hand_landmark/hand_landmark.tflite
+/home/haoyu/URECA/hand_detection/mysite/core/views.py changed, reloading.
+Traceback (most recent call last):
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/base.py", line 330, in run_from_argv
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/commands/runserver.py", line 61, in execute
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/base.py", line 371, in execute
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/commands/runserver.py", line 96, in handle
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/commands/runserver.py", line 103, in run
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/autoreload.py", line 618, in run_with_reloader
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/autoreload.py", line 603, in start_django
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/autoreload.py", line 318, in run
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/autoreload.py", line 324, in run_loop
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/autoreload.py", line 372, in tick
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/autoreload.py", line 347, in notify_file_changed
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/autoreload.py", line 241, in trigger_reload
+SystemExit: 3
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/haoyu/URECA/hand_detection/manage.py", line 15, in <module>
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/__init__.py", line 401, in execute_from_command_line
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/__init__.py", line 395, in execute
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/core/management/base.py", line 343, in run_from_argv
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/db/utils.py", line 237, in close_all
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/django/utils/asyncio.py", line 19, in inner
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/asyncio/events.py", line 639, in get_event_loop
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/asyncio/events.py", line 659, in new_event_loop
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/asyncio/unix_events.py", line 54, in __init__
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/asyncio/selector_events.py", line 58, in __init__
+  File "/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/selectors.py", line 350, in __init__
+OSError: [Errno 24] Too many open files
+FATAL: exception not rethrown
+
+3. some others: (whole process dies)
+terminate called without an active exception
